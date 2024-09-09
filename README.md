@@ -1,4 +1,5 @@
-JStypeMaster
+#JStypeMaster
+
 JStypeMaster is a typing speed game that challenges users to type as many words correctly as possible within a set time limit. The game tracks typing accuracy and speed, providing feedback to help users improve their typing skills.
 
 Features
