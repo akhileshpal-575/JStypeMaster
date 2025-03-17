@@ -1,277 +1,124 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Fira+Code:wght@400;500&display=swap');
-
-:root {
-    --bg-primary: #1a1a2e;
-    --bg-secondary: #16213e;
-    --text-primary: #e6e6e6;
-    --text-secondary: #8a8aa3;
-    --accent: #4ecca3;
-    --accent-dark: #3aa788;
-    --error: #ff4757;
-    --correct: #7bed9f;
-    --card-bg: rgba(255, 255, 255, 0.05);
-    --shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+@import url('https://fonts.googleapis.com/css2?family=Roboto&family=Roboto+Mono&display=swap');
+:root{
+    --bgColor: #333;
+    --textPrimary: #fff;
+    --textSecondary: #666;
+    --primaryColor: #fd4;
 }
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+body{
+    font-family: 'Roboto', sans-serif;
+    background-color:var(--bgColor);
+    color: var(--textPrimary);
+    font-size: 1.4rem;
 }
-
-body {
-    font-family: 'Poppins', sans-serif;
-    background: linear-gradient(135deg, var(--bg-primary), var(--bg-secondary));
-    color: var(--text-primary);
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    line-height: 1.6;
+main{
+    width: 600px;
+    margin: 50px auto;
 }
-
-main {
-    width: 90%;
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 2rem;
+h2{ margin-bottom: 2px;
+    color: var(--primaryColor);
 }
-
-.app-container {
-    background: var(--card-bg);
-    backdrop-filter: blur(10px);
-    border-radius: 20px;
-    box-shadow: var(--shadow);
-    padding: 2rem;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+h2 svg{
+    width: 50px;
+    fill: var(--primaryColor);
 }
-
-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 2rem;
+#header{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin: 20px 6px 30px;
 }
-
-.logo {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
+#buttons{
+    text-align: right;
 }
-
-h2 {
-    font-size: 2.2rem;
-    font-weight: 600;
-    color: var(--accent);
-    margin: 0;
+#info{
+    color: var(--primaryColor);
 }
-
-svg {
-    width: 40px;
-    height: 40px;
-    fill: var(--accent);
-}
-
-#header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 2rem;
-    padding: 1rem;
-    background: rgba(0, 0, 0, 0.2);
-    border-radius: 10px;
-}
-
-#info {
-    font-size: 2rem;
-    font-weight: 600;
-    color: var(--accent);
-    background: rgba(0, 0, 0, 0.3);
-    padding: 0.5rem 1.5rem;
-    border-radius: 8px;
-    min-width: 80px;
-    text-align: center;
-}
-
-#buttons {
-    display: flex;
-    gap: 1rem;
-}
-
-button {
-    background: var(--accent);
-    color: var(--bg-primary);
-    border: none;
-    padding: 0.6rem 1.5rem;
-    border-radius: 8px;
-    font-family: 'Poppins', sans-serif;
-    font-weight: 600;
-    font-size: 1rem;
+button{
+    background: rgba(255,255,255,.2);
+    border:0;
+    color: rgba(255,255,255,.5);
+    padding: 5px 20px;
+    border-radius: 5px;
     cursor: pointer;
-    transition: all 0.2s ease;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
-
-button:hover {
-    background: var(--accent-dark);
-    transform: translateY(-2px);
-}
-
-button:active {
-    transform: translateY(1px);
-}
-
-#game {
-    background: rgba(0, 0, 0, 0.2);
-    padding: 2rem;
-    border-radius: 15px;
-    position: relative;
-    height: 200px;
+div#game{
+    line-height:35px;
+    height:105px;
     overflow: hidden;
-    transition: all 0.3s ease;
-    margin-bottom: 1rem;
-    box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.3);
+    position: relative;
 }
-
-#game:focus {
-    outline: 2px solid var(--accent);
-    box-shadow: 0 0 20px rgba(78, 204, 163, 0.3);
+div#game:focus{
+    outline:0;
 }
-
-#words {
+#words{
     filter: blur(5px);
-    color: var(--text-secondary);
-    font-size: 1.5rem;
-    line-height: 2.5rem;
-    transition: all 0.3s ease;
+    color: var(--textSecondary);
 }
-
-#game:focus #words {
+#game:focus #words{
     filter: blur(0);
 }
-
-.word {
-    display: inline-block;
-    font-family: 'Fira Code', monospace;
-    margin: 0 5px;
-    border-radius: 5px;
-    padding: 0 3px;
-}
-
-.word.current {
-    background: rgba(255, 255, 255, 0.05);
-}
-
-.letter {
-    position: relative;
-    transition: all 0.1s ease;
-}
-
-.letter.correct {
-    color: var(--correct);
-}
-
-.letter.incorrect {
-    color: var(--error);
-    text-decoration: underline;
-}
-
-@keyframes blink {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0; }
-}
-
-#cursor {
-    display: none;
-    width: 3px;
-    height: 1.8rem;
-    background: var(--accent);
-    position: absolute;
-    animation: blink 0.8s infinite;
-    border-radius: 2px;
-    top: 198px;
-    left: 18px;
-}
-
-#game:focus #cursor {
-    display: block;
-}
-
 #focus-error {
     position: absolute;
     inset: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: rgba(0, 0, 0, 0.5);
-    border-radius: 15px;
-    font-size: 1.2rem;
-    font-weight: 500;
+    text-align: center;
+    padding-top: 35px;
+}
+#game:focus #focus-error{
+    display:none;
+}
+div.word{
+    display: inline-block;
+    font-family: 'Roboto Mono', monospace;
+    margin: 0 5px;
+}
+.letter.correct{
+    color: #fff;
+}
+.letter.incorrect{
+    color: #f55;
+}
+@keyframes blink{
+    0%{
+        opacity: 1;
+    }
+    50%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+#cursor{
+    display:none;
+    width: 2px;
+    height: 1.6rem;
+    background: var(--primaryColor);
+    position: fixed;
+    top: 198px;
+    left: 18px;
+    animation: blink .4s infinite;
 }
 
-#game:focus #focus-error {
-    display: none;
-}
+/* #cursor {
+    display: block;
+    width: 2px;
+    height: 1.6rem;
+    background: var(--primaryColor);
+    position: absolute;
+    animation: blink .4s infinite;
+} */
 
-#game.over #words {
-    opacity: 0.5;
-}
 
-#game.over:focus #cursor {
-    display: none;
+#game:focus #cursor{
+    display: block;
 }
-
+#game.over #words{
+    opacity: .5;
+    filter: blur(0px);
+}
+#game.over:focus #cursor{
+    display:none;
+}
 #game.over #focus-error {
     display: none;
-}
-
-footer {
-    text-align: center;
-    margin-top: 2rem;
-    color: var(--text-secondary);
-    font-size: 0.9rem;
-}
-
-/* Stats area for displaying WPM after game over */
-.stats {
-    margin-top: 1rem;
-    padding: 1rem 0;
-    text-align: center;
-    display: none;
-}
-
-#game.over + .stats {
-    display: block;
-    animation: fadeIn 0.5s ease;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    main {
-        width: 95%;
-        padding: 1rem 0;
-    }
-    
-    .app-container {
-        padding: 1.5rem;
-    }
-    
-    #game {
-        padding: 1.5rem;
-        height: 180px;
-    }
-    
-    h2 {
-        font-size: 1.8rem;
-    }
-    
-    #words {
-        font-size: 1.3rem;
-        line-height: 2.2rem;
-    }
 }
